@@ -48,6 +48,7 @@ class AuthController extends Controller
 
         if($user && Hash::check($fields['password'], $user->password)){
         Auth::login($user);
+        $request->session()->regenerate();
         return redirect()->route('task.index')->with('success','You have logged in successfully.');
         }
         else {
